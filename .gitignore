@@ -1,0 +1,13 @@
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+node_modules
+build
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Others
+\.idea/

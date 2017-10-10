@@ -1,18 +1,9 @@
 const path = require("path");
-const pagesDir = path.resolve(__dirname, "./src");
 const buildDir = path.resolve(__dirname, "./build");
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const dirVars = require('webpack-config/base/dir-vars.config.js');
-let pageArr = [
-    'index/login',
-    'index/index',
-    'alert/index'
-];
-let configEntry = {};
-pageArr.forEach((page) => {
-    configEntry[page] = path.resolve(pagesDir, page + '/page');
-});
+const dirVars = require('./webpack-config/base/dir-vars.config.js');
+const entries = require('./webpack-config/entry.config.js');
 let eslint = {
     configFile: path.resolve(dirVars.staticRootDir, './.eslintrc'), // 指定eslint的配置文件在哪里
         failOnWarning: true, // eslint报warning了就终止webpack编译
@@ -20,7 +11,7 @@ let eslint = {
         cache: true, // 开启eslint的cache，cache存在node_modules/.cache目录里
 };
 module.exports = {
-    entry: configEntry,
+    entry: entries,
     output: {
         path: buildDir, // var buildDir = path.resolve(__dirname, './build');
         publicPath: '../../../../build/',
